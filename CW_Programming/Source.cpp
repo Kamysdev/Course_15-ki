@@ -27,11 +27,11 @@ Music music;
 int Grid[size + 2][size + 2];
 int CheckGrid[size * size];
 
-void drawGrid(RenderWindow& window, int grid[size + 2][size + 2], int Vertres) 
+void drawGrid(RenderWindow& window, int grid[size + 2][size + 2]) 
 {
     Sprite cell;
     cell.setPosition(sf::Vector2f(cellSize, cellSize));
-    cell.setScale(cellSize/96, cellSize/96);
+    cell.setScale(cellSize/150, cellSize/150);
 
     for (int x = 0; x < size + 2; x++) 
     {
@@ -40,85 +40,87 @@ void drawGrid(RenderWindow& window, int grid[size + 2][size + 2], int Vertres)
             cell.setPosition(x * cellSize, y * cellSize);
             if (Grid[x][y] == -1) 
             {
+                cell.setTextureRect(IntRect(0, 0, 150, 150));
                 cell.setTexture(textureboarder);
             }
             else if (Grid[x][y] == 0) 
             {
+                cell.setTextureRect(IntRect(0, 0, 150, 150));
                 cell.setTexture(textureclear);
             }
             else if (Grid[x][y] == 1) 
             {
-                cell.setTextureRect(IntRect(0, 0, 96, 96));
+                cell.setTextureRect(IntRect(0, 0, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 2) 
             {
-                cell.setTextureRect(IntRect(96, 0, 96, 96));
+                cell.setTextureRect(IntRect(150, 0, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 3) 
             {
-                cell.setTextureRect(IntRect(192, 0, 96, 96));
+                cell.setTextureRect(IntRect(300, 0, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 4) 
             {
-                cell.setTextureRect(IntRect(288, 0, 96, 96));
+                cell.setTextureRect(IntRect(450, 0, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 5) 
             {
-                cell.setTextureRect(IntRect(0, 96, 96, 96));
+                cell.setTextureRect(IntRect(0, 150, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 6) 
             {
-                cell.setTextureRect(IntRect(96, 96, 96, 96));
+                cell.setTextureRect(IntRect(150, 150, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 7) 
             {
-                cell.setTextureRect(IntRect(192, 96, 96, 96));
+                cell.setTextureRect(IntRect(300, 150, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 8) 
             {
-                cell.setTextureRect(IntRect(288, 96, 96, 96));
+                cell.setTextureRect(IntRect(450, 150, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 9) 
             {
-                cell.setTextureRect(IntRect(0, 192, 96, 96));
+                cell.setTextureRect(IntRect(0, 300, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 10) 
             {
-                cell.setTextureRect(IntRect(96, 192, 96, 96));
+                cell.setTextureRect(IntRect(96, 300, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 11) 
             {
-                cell.setTextureRect(IntRect(192, 192, 96, 96));
+                cell.setTextureRect(IntRect(192, 300, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 12) 
             {
-                cell.setTextureRect(IntRect(288, 192, 96, 96));
+                cell.setTextureRect(IntRect(450, 300, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 13) 
             {
-                cell.setTextureRect(IntRect(0, 288, 96, 96));
+                cell.setTextureRect(IntRect(0, 450, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 14) 
             {
-                cell.setTextureRect(IntRect(96, 288, 96, 96));
+                cell.setTextureRect(IntRect(150, 450, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 15) 
             {
-                cell.setTextureRect(IntRect(192, 288, 96, 96));
+                cell.setTextureRect(IntRect(300, 450, 150, 150));
                 cell.setTexture(girl1);
             }
             window.draw(cell);
@@ -126,12 +128,54 @@ void drawGrid(RenderWindow& window, int grid[size + 2][size + 2], int Vertres)
     }
 }
 
-void init()
+void music_changer()
+{
+    srand(time(NULL) - 555);
+
+    switch (rand() % 5)
+    {
+        case 0:
+        {
+            music.openFromFile("../musics/navalivaet_jesco.ogg");
+            break;
+        }
+        case 1:
+        {
+            music.openFromFile("../musics/navalivaet_jesco1.ogg");
+            break;
+        }
+        case 2:
+        {
+            music.openFromFile("../musics/navalivaet_jesco2.ogg");
+            break;
+        }
+        case 3:
+        {
+            music.openFromFile("../musics/navalivaet_jesco3.ogg");
+            break;
+        }
+        case 4:
+        {
+            music.openFromFile("../musics/navalivaet_jesco4.ogg");
+            break;
+        }
+        default:
+        {
+            music.openFromFile("../musics/navalivaet_jesco.ogg");
+            break;
+        }
+    }
+
+    music.setVolume(10);
+    music.play();
+    music.setLoop(true);
+}
+
+void girl_generator()
 {
     srand(time(NULL));
-    
-    
-    switch (rand() % 2)
+
+    switch (rand() % 7)
     {
         case 0:
         {
@@ -143,6 +187,32 @@ void init()
             girl1.loadFromFile("../images/girl1.jpg");
             break;
         }
+        case 2:
+        {
+            girl1.loadFromFile("../images/girl2.jpg");
+            break;
+        }
+        case 3:
+        {
+            girl1.loadFromFile("../images/girl3.jpg");
+            break;
+        }
+        case 4:
+        {
+            girl1.loadFromFile("../images/girl4.jpg");
+            break;
+        }
+        case 5:
+        {
+            girl1.loadFromFile("../images/girl5.jpg");
+            break;
+        }
+        case 6:
+        {
+            girl1.loadFromFile("../images/girl6.jpg");
+            break;
+        }
+
         default:
         {
             girl1.loadFromFile("../images/girl.jpg");
@@ -151,6 +221,118 @@ void init()
     }
     girl1.setSmooth(true);
 
+    for (int i = 1; i < size + 1; i++)
+    {
+        for (int j = 1; j < size + 1; j++)
+        {
+            Grid[i][j] = 0;
+        }
+    }
+
+    bool regen = false;
+
+    while (regen == 0)
+    {
+
+        for (int i = 1; i < size + 1; i++)
+        {
+            for (int j = 1; j < size + 1; j++)
+            {
+                if (i == size && j == size)
+                {  // Пропустить последний элемент
+                    continue;
+                }
+                int num;
+                bool found;
+                do
+                {
+                    num = rand() % 15 + 1;  // Случайное число от 1 до 15
+                    found = false;
+                    for (int k = 1; k < i; k++)
+                    {
+                        for (int l = 1; l < size + 1; l++)
+                        {
+                            if (Grid[k][l] == num)
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (found)
+                        {
+                            break;
+                        }
+                    }
+                    for (int k = 0; k < j; k++)
+                    {
+                        if (Grid[i][k] == num)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                } while (found);
+                Grid[i][j] = num;
+            }
+        }
+        Grid[4][4] = 0;
+
+        for (int i = 1, count = 0; i < size + 1; i++)
+        {
+            for (int j = 1; j < size + 1; j++, count++)
+            {
+                CheckGrid[count] = Grid[i][j];
+            }
+        }
+
+        int inv = 0;
+        for (int i = 0; i < size * size; i++)
+        {
+            if (CheckGrid[i] != 0)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    if (CheckGrid[j] > CheckGrid[i])
+                    {
+                        inv++;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < size * size; i++)
+        {
+            if (CheckGrid[i] == 0)
+            {
+                inv += 1 + i / 4;
+            }
+        }
+        if (inv & 1)
+        {
+            regen = 0;
+        }
+        else
+        {
+            regen = 1;
+        }
+    }
+
+    for (int x = 0; x < size + 2; x++)
+    {
+        Grid[x][0] = -1;
+        Grid[x][size + 1] = -1;
+    }
+    for (int y = 0; y < size + 2; y++)
+    {
+        Grid[0][y] = -1;
+        Grid[size + 1][y] = -1;
+    }
+
+    Grid[5][5] = 0;
+}
+
+void init()
+{
+    girl_generator();
 
     //Texture textureclear;
     textureclear.loadFromFile("../images/textureclear.jpg");
@@ -160,18 +342,7 @@ void init()
     textureboarder.loadFromFile("../images/textureboarder.jpg");
     textureboarder.setSmooth(true);
 
-    if (rand() % 100 > 50)
-    {
-        music.openFromFile("../music/navalivaet_jesco.ogg");
-    }
-    else
-    {
-        music.openFromFile("../music/navalivaet_jesco2.ogg");
-    }
-        
-    music.setVolume(10);
-    music.play();
-    music.setLoop(true);
+    music_changer();
 }
 
 int main() {
@@ -181,7 +352,7 @@ int main() {
     int Vertres = GetDeviceCaps(hDCScreen, VERTRES);
     ReleaseDC(NULL, hDCScreen);
 
-    cellSize = Vertres / 11.25 * 1.25;
+    cellSize = Vertres / 7.2;
 
     init();
 
@@ -195,112 +366,7 @@ int main() {
 
     srand(time(NULL));
 
-    for (int i = 1; i < size + 1; i++) 
-    {
-        for (int j = 1; j < size + 1; j++) 
-        {
-            Grid[i][j] = 0;
-        }
-    }
-
-    bool regen = 0;
-
-    while (regen == 0) 
-    {
-
-        for (int i = 1; i < size + 1; i++) 
-        {
-            for (int j = 1; j < size + 1; j++) 
-            {
-                if (i == size && j == size) 
-                {  // Пропустить последний элемент
-                    continue;
-                }
-                int num;
-                bool found;
-                do 
-                {
-                    num = rand() % 15 + 1;  // Случайное число от 1 до 15
-                    found = false;
-                    for (int k = 1; k < i; k++) 
-                    {
-                        for (int l = 1; l < size + 1; l++) 
-                        {
-                            if (Grid[k][l] == num) 
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (found) 
-                        {
-                            break;
-                        }
-                    }
-                    for (int k = 0; k < j; k++) 
-                    {
-                        if (Grid[i][k] == num) 
-                        {
-                            found = true;
-                            break;
-                        }
-                    }
-                } while (found);
-                Grid[i][j] = num;
-            }
-        }
-        Grid[4][4] = 0;
-
-        for (int i = 1, count = 0; i < size + 1; i++) 
-        {
-            for (int j = 1; j < size + 1; j++, count++) 
-            {
-                CheckGrid[count] = Grid[i][j];
-            }
-        }
-
-        int inv = 0;
-        for (int i = 0; i < size * size; i++) 
-        {
-            if (CheckGrid[i] != 0) 
-            {
-                for (int j = 0; j < i; j++) 
-                {
-                    if (CheckGrid[j] > CheckGrid[i]) 
-                    {
-                        inv++;
-                    }
-                }
-            }
-        }
-        for (int i = 0; i < size * size; i++) 
-        {
-            if (CheckGrid[i] == 0) 
-            {
-                inv += 1 + i / 4;
-            }
-        }
-        if (inv & 1) 
-        {
-            regen = 0;
-        }
-        else
-        {
-            regen = 1;
-        }
-    }
-
-    for (int x = 0; x < size + 2; x++) 
-    {
-        Grid[x][0] = -1;
-        Grid[x][size + 1] = -1;
-    }
-    for (int y = 0; y < size + 2; y++) 
-    {
-        Grid[0][y] = -1;
-        Grid[size + 1][y] = -1;
-    }
-
+    
 
     while (window.isOpen()) 
     {
@@ -311,13 +377,23 @@ int main() {
             {
                 window.close();
             }
+
+            if (event.type == Event::KeyPressed)
+            {
+                if (event.key.code == 36)
+                {
+                    window.close();
+                }
+            }
+
             if (event.type == Event::MouseButtonPressed && !LevelComplited) 
             {
                 if (event.mouseButton.button == Mouse::Left 
                     && event.mouseButton.x >= cellSize 
                     && event.mouseButton.x < (size + 1) * cellSize 
                     && event.mouseButton.y >= cellSize 
-                    && event.mouseButton.y < (size + 1) * cellSize) {
+                    && event.mouseButton.y < (size + 1) * cellSize) 
+                {
                     if (dragged == 0) 
                     {
                         m = event.mouseButton.x / cellSize;
@@ -359,12 +435,31 @@ int main() {
                         }
                     }
                 }
+
+                else if (event.mouseButton.button == Mouse::Left
+                    && event.mouseButton.x >= (size + 1) * cellSize
+                    && event.mouseButton.x < (size + 2) * cellSize
+                    && event.mouseButton.y >= (size + 1) * cellSize
+                    && event.mouseButton.y < (size + 2) * cellSize)
+                {
+                    music.stop();
+                    music_changer();
+                }
+
+                else if (event.mouseButton.button == Mouse::Left
+                    && event.mouseButton.x >= (size)*cellSize
+                    && event.mouseButton.x < (size + 1) * cellSize
+                    && event.mouseButton.y >= (size + 1) * cellSize
+                    && event.mouseButton.y < (size + 2) * cellSize)
+                {
+                    girl_generator();
+                }
             }
         }
 
         window.clear(Color::White);
 
-        drawGrid(window, Grid, Vertres);
+        drawGrid(window, Grid);
 
         window.display();
 
