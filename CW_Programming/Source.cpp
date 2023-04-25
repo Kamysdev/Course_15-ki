@@ -19,21 +19,7 @@ int m1 = 0;
 int n1 = 0;
 bool dragged = 0;
 
-Texture texture1;
-Texture texture2;
-Texture texture3;
-Texture texture4;
-Texture texture5;
-Texture texture6;
-Texture texture7;
-Texture texture8;
-Texture texture9;
-Texture texture10;
-Texture texture11;
-Texture texture12;
-Texture texture13;
-Texture texture14;
-Texture texture15;
+Texture girl1;
 Texture textureclear;
 Texture textureboarder;
 Music music;
@@ -62,63 +48,78 @@ void drawGrid(RenderWindow& window, int grid[size + 2][size + 2], int Vertres)
             }
             else if (Grid[x][y] == 1) 
             {
-                cell.setTexture(texture1);
+                cell.setTextureRect(IntRect(0, 0, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 2) 
             {
-                cell.setTexture(texture2);
+                cell.setTextureRect(IntRect(96, 0, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 3) 
             {
-                cell.setTexture(texture3);
+                cell.setTextureRect(IntRect(192, 0, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 4) 
             {
-                cell.setTexture(texture4);
+                cell.setTextureRect(IntRect(288, 0, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 5) 
             {
-                cell.setTexture(texture5);
+                cell.setTextureRect(IntRect(0, 96, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 6) 
             {
-                cell.setTexture(texture6);
+                cell.setTextureRect(IntRect(96, 96, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 7) 
             {
-                cell.setTexture(texture7);
+                cell.setTextureRect(IntRect(192, 96, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 8) 
             {
-                cell.setTexture(texture8);
+                cell.setTextureRect(IntRect(288, 96, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 9) 
             {
-                cell.setTexture(texture9);
+                cell.setTextureRect(IntRect(0, 192, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 10) 
             {
-                cell.setTexture(texture10);
+                cell.setTextureRect(IntRect(96, 192, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 11) 
             {
-                cell.setTexture(texture11);
+                cell.setTextureRect(IntRect(192, 192, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 12) 
             {
-                cell.setTexture(texture12);
+                cell.setTextureRect(IntRect(288, 192, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 13) 
             {
-                cell.setTexture(texture13);
+                cell.setTextureRect(IntRect(0, 288, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 14) 
             {
-                cell.setTexture(texture14);
+                cell.setTextureRect(IntRect(96, 288, 96, 96));
+                cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 15) 
             {
-                cell.setTexture(texture15);
+                cell.setTextureRect(IntRect(192, 288, 96, 96));
+                cell.setTexture(girl1);
             }
             window.draw(cell);
         }
@@ -128,69 +129,28 @@ void drawGrid(RenderWindow& window, int grid[size + 2][size + 2], int Vertres)
 void init()
 {
     srand(time(NULL));
-    //Texture texture1;
-    texture1.loadFromFile("../images/1.jpg");
-    texture1.setSmooth(true);
+    
+    
+    switch (rand() % 2)
+    {
+        case 0:
+        {
+            girl1.loadFromFile("../images/girl.jpg");
+            break;
+        }
+        case 1:
+        {
+            girl1.loadFromFile("../images/girl1.jpg");
+            break;
+        }
+        default:
+        {
+            girl1.loadFromFile("../images/girl.jpg");
+            break;
+        }
+    }
+    girl1.setSmooth(true);
 
-    //Texture texture2;
-    texture2.loadFromFile("../images/2.jpg");
-    texture2.setSmooth(true);
-
-    //Texture texture3;
-    texture3.loadFromFile("../images/3.jpg");
-    texture3.setSmooth(true);
-
-    //Texture texture3;
-    texture3.loadFromFile("../images/3.jpg");
-    texture3.setSmooth(true);
-
-    //Texture texture4;
-    texture4.loadFromFile("../images/4.jpg");
-    texture4.setSmooth(true);
-
-    //Texture texture5;
-    texture5.loadFromFile("../images/5.jpg");
-    texture5.setSmooth(true);
-
-    //Texture texture6;
-    texture6.loadFromFile("../images/6.jpg");
-    texture6.setSmooth(true);
-
-    //Texture texture7;
-    texture7.loadFromFile("../images/7.jpg");
-    texture7.setSmooth(true);
-
-    //Texture texture8;
-    texture8.loadFromFile("../images/8.jpg");
-    texture8.setSmooth(true);
-
-    //Texture texture9;
-    texture9.loadFromFile("../images/9.jpg");
-    texture9.setSmooth(true);
-
-    //Texture texture10;
-    texture10.loadFromFile("../images/10.jpg");
-    texture10.setSmooth(true);
-
-    //Texture texture11;
-    texture11.loadFromFile("../images/11.jpg");
-    texture11.setSmooth(true);
-
-    //Texture texture12;
-    texture12.loadFromFile("../images/12.jpg");
-    texture12.setSmooth(true);
-
-    //Texture texture13;
-    texture13.loadFromFile("../images/13.jpg");
-    texture13.setSmooth(true);
-
-    //Texture texture14;
-    texture14.loadFromFile("../images/14.jpg");
-    texture14.setSmooth(true);
-
-    //Texture texture15;
-    texture15.loadFromFile("../images/15.jpg");
-    texture15.setSmooth(true);
 
     //Texture textureclear;
     textureclear.loadFromFile("../images/textureclear.jpg");
