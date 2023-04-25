@@ -108,12 +108,12 @@ void drawGrid(RenderWindow& window, int grid[size + 2][size + 2])
             }
             else if (Grid[x][y] == 10) 
             {
-                cell.setTextureRect(IntRect(96, 300, 150, 150));
+                cell.setTextureRect(IntRect(150, 300, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 11) 
             {
-                cell.setTextureRect(IntRect(192, 300, 150, 150));
+                cell.setTextureRect(IntRect(300, 300, 150, 150));
                 cell.setTexture(girl1);
             }
             else if (Grid[x][y] == 12) 
@@ -365,8 +365,8 @@ void init()
     music_changer();
 }
 
-int main() {
-
+int main() 
+{
     srand(time(NULL));
     HDC hDCScreen = GetDC(NULL);
     int Vertres = GetDeviceCaps(hDCScreen, VERTRES);
@@ -385,8 +385,6 @@ int main() {
     window.setFramerateLimit(60);
 
     srand(time(NULL));
-
-    
 
     while (window.isOpen()) 
     {
