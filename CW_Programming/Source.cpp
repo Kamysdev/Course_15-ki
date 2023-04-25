@@ -22,6 +22,10 @@ bool dragged = 0;
 Texture girl1;
 Texture textureclear;
 Texture textureboarder;
+
+Texture texturerecreate;
+Texture texturemusic;
+
 Music music;
 
 int Grid[size + 2][size + 2];
@@ -38,10 +42,19 @@ void drawGrid(RenderWindow& window, int grid[size + 2][size + 2])
         for (int y = 0; y < size + 2; y++) 
         {
             cell.setPosition(x * cellSize, y * cellSize);
+
             if (Grid[x][y] == -1) 
             {
                 cell.setTextureRect(IntRect(0, 0, 150, 150));
                 cell.setTexture(textureboarder);
+            }
+            else if (Grid[x][y] == -5)
+            {
+                cell.setTexture(texturerecreate);
+            }
+            else if (Grid[x][y] == -6)
+            {
+                cell.setTexture(texturemusic);
             }
             else if (Grid[x][y] == 0) 
             {
@@ -136,32 +149,32 @@ void music_changer()
     {
         case 0:
         {
-            music.openFromFile("../musics/navalivaet_jesco.ogg");
+            music.openFromFile("./musics/navalivaet_jesco.ogg");
             break;
         }
         case 1:
         {
-            music.openFromFile("../musics/navalivaet_jesco1.ogg");
+            music.openFromFile("./musics/navalivaet_jesco1.ogg");
             break;
         }
         case 2:
         {
-            music.openFromFile("../musics/navalivaet_jesco2.ogg");
+            music.openFromFile("./musics/navalivaet_jesco2.ogg");
             break;
         }
         case 3:
         {
-            music.openFromFile("../musics/navalivaet_jesco3.ogg");
+            music.openFromFile("./musics/navalivaet_jesco3.ogg");
             break;
         }
         case 4:
         {
-            music.openFromFile("../musics/navalivaet_jesco4.ogg");
+            music.openFromFile("./musics/navalivaet_jesco4.ogg");
             break;
         }
         default:
         {
-            music.openFromFile("../musics/navalivaet_jesco.ogg");
+            music.openFromFile("./musics/navalivaet_jesco.ogg");
             break;
         }
     }
@@ -179,43 +192,43 @@ void girl_generator()
     {
         case 0:
         {
-            girl1.loadFromFile("../images/girl.jpg");
+            girl1.loadFromFile("./images/girl.jpg");
             break;
         }
         case 1:
         {
-            girl1.loadFromFile("../images/girl1.jpg");
+            girl1.loadFromFile("./images/girl1.jpg");
             break;
         }
         case 2:
         {
-            girl1.loadFromFile("../images/girl2.jpg");
+            girl1.loadFromFile("./images/girl2.jpg");
             break;
         }
         case 3:
         {
-            girl1.loadFromFile("../images/girl3.jpg");
+            girl1.loadFromFile("./images/girl3.jpg");
             break;
         }
         case 4:
         {
-            girl1.loadFromFile("../images/girl4.jpg");
+            girl1.loadFromFile("./images/girl4.jpg");
             break;
         }
         case 5:
         {
-            girl1.loadFromFile("../images/girl5.jpg");
+            girl1.loadFromFile("./images/girl5.jpg");
             break;
         }
         case 6:
         {
-            girl1.loadFromFile("../images/girl6.jpg");
+            girl1.loadFromFile("./images/girl6.jpg");
             break;
         }
 
         default:
         {
-            girl1.loadFromFile("../images/girl.jpg");
+            girl1.loadFromFile("./images/girl.jpg");
             break;
         }
     }
@@ -327,7 +340,8 @@ void girl_generator()
         Grid[size + 1][y] = -1;
     }
 
-    Grid[5][5] = 0;
+    Grid[size][0] = - 5;
+    Grid[size + 1][0] = - 6;
 }
 
 void init()
@@ -335,12 +349,18 @@ void init()
     girl_generator();
 
     //Texture textureclear;
-    textureclear.loadFromFile("../images/textureclear.jpg");
+    textureclear.loadFromFile("./images/textureclear.jpg");
     textureclear.setSmooth(true);
 
     //Texture textureboarder;
-    textureboarder.loadFromFile("../images/textureboarder.jpg");
+    textureboarder.loadFromFile("./images/textureboarder.jpg");
     textureboarder.setSmooth(true);
+
+    texturerecreate.loadFromFile("./images/recreate.jpg");
+    texturerecreate.setSmooth(true);
+
+    texturemusic.loadFromFile("./images/musicico.jpg");
+    texturerecreate.setSmooth(true);
 
     music_changer();
 }
@@ -439,8 +459,8 @@ int main() {
                 else if (event.mouseButton.button == Mouse::Left
                     && event.mouseButton.x >= (size + 1) * cellSize
                     && event.mouseButton.x < (size + 2) * cellSize
-                    && event.mouseButton.y >= (size + 1) * cellSize
-                    && event.mouseButton.y < (size + 2) * cellSize)
+                    && event.mouseButton.y >= 0 * cellSize
+                    && event.mouseButton.y < (size) * cellSize)
                 {
                     music.stop();
                     music_changer();
@@ -449,8 +469,8 @@ int main() {
                 else if (event.mouseButton.button == Mouse::Left
                     && event.mouseButton.x >= (size)*cellSize
                     && event.mouseButton.x < (size + 1) * cellSize
-                    && event.mouseButton.y >= (size + 1) * cellSize
-                    && event.mouseButton.y < (size + 2) * cellSize)
+                    && event.mouseButton.y >= 0
+                    && event.mouseButton.y < (size) * cellSize)
                 {
                     girl_generator();
                 }
