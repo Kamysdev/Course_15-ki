@@ -149,32 +149,32 @@ void music_changer()
     {
         case 0:
         {
-            music.openFromFile("./musics/navalivaet_jesco.ogg");
+            music.openFromFile("../musics/navalivaet_jesco.ogg");
             break;
         }
         case 1:
         {
-            music.openFromFile("./musics/navalivaet_jesco1.ogg");
+            music.openFromFile("../musics/navalivaet_jesco1.ogg");
             break;
         }
         case 2:
         {
-            music.openFromFile("./musics/navalivaet_jesco2.ogg");
+            music.openFromFile("../musics/navalivaet_jesco2.ogg");
             break;
         }
         case 3:
         {
-            music.openFromFile("./musics/navalivaet_jesco3.ogg");
+            music.openFromFile("../musics/navalivaet_jesco3.ogg");
             break;
         }
         case 4:
         {
-            music.openFromFile("./musics/navalivaet_jesco4.ogg");
+            music.openFromFile("../musics/navalivaet_jesco4.ogg");
             break;
         }
         default:
         {
-            music.openFromFile("./musics/navalivaet_jesco.ogg");
+            music.openFromFile("../musics/navalivaet_jesco.ogg");
             break;
         }
     }
@@ -188,47 +188,47 @@ void girl_generator()
 {
     srand(time(NULL));
 
-    switch (rand() % 7)
+    switch (rand() % 8)
     {
         case 0:
         {
-            girl1.loadFromFile("./images/girl.jpg");
+            girl1.loadFromFile("../images/girl.jpg");
             break;
         }
         case 1:
         {
-            girl1.loadFromFile("./images/girl1.jpg");
+            girl1.loadFromFile("../images/girl1.jpg");
             break;
         }
         case 2:
         {
-            girl1.loadFromFile("./images/girl2.jpg");
+            girl1.loadFromFile("../images/girl2.jpg");
             break;
         }
         case 3:
         {
-            girl1.loadFromFile("./images/girl3.jpg");
+            girl1.loadFromFile("../images/girl3.jpg");
             break;
         }
         case 4:
         {
-            girl1.loadFromFile("./images/girl4.jpg");
+            girl1.loadFromFile("../images/girl4.jpg");
             break;
         }
         case 5:
         {
-            girl1.loadFromFile("./images/girl5.jpg");
+            girl1.loadFromFile("../images/girl5.jpg");
             break;
         }
         case 6:
         {
-            girl1.loadFromFile("./images/girl6.jpg");
+            girl1.loadFromFile("../images/girl6.jpg");
             break;
         }
 
         default:
         {
-            girl1.loadFromFile("./images/girl.jpg");
+            girl1.loadFromFile("../images/girl.jpg");
             break;
         }
     }
@@ -349,17 +349,17 @@ void init()
     girl_generator();
 
     //Texture textureclear;
-    textureclear.loadFromFile("./images/textureclear.jpg");
+    textureclear.loadFromFile("../images/textureclear.jpg");
     textureclear.setSmooth(true);
 
     //Texture textureboarder;
-    textureboarder.loadFromFile("./images/textureboarder.jpg");
+    textureboarder.loadFromFile("../images/textureboarder.jpg");
     textureboarder.setSmooth(true);
 
-    texturerecreate.loadFromFile("./images/recreate.jpg");
+    texturerecreate.loadFromFile("../images/recreate.jpg");
     texturerecreate.setSmooth(true);
 
-    texturemusic.loadFromFile("./images/musicico.jpg");
+    texturemusic.loadFromFile("../images/musicico.jpg");
     texturerecreate.setSmooth(true);
 
     music_changer();
