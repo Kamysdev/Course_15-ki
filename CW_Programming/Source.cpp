@@ -148,7 +148,7 @@ void drawGrid(RenderWindow& window, int grid[size + 2][size + 2])
     }
 }
 
-void music_changer()
+void musicChanger()
 {
     srand(time(NULL) - 555);
 
@@ -186,12 +186,12 @@ void music_changer()
         }
     }
 
-    music.setVolume(10);
+    music.setVolume(5);
     music.play();
     music.setLoop(true);
 }
 
-void girl_generator()
+void girlGenerator()
 {
     srand(time(NULL));
 
@@ -353,7 +353,7 @@ void girl_generator()
 
 void init()
 {
-    girl_generator();
+    girlGenerator();
 
     //Texture textureclear;
     textureclear.loadFromFile("./images/textureclear.jpg");
@@ -369,7 +369,7 @@ void init()
     texturemusic.loadFromFile("./images/musicico.jpg");
     texturerecreate.setSmooth(true);
 
-    music_changer();
+    musicChanger();
 }
 
 int main() 
@@ -451,7 +451,7 @@ int main()
                     && event.mouseButton.y < cellSize)
                 {
                     music.stop();
-                    music_changer();
+                    musicChanger();
                 }
 
                 else if (event.mouseButton.button == Mouse::Left
@@ -460,7 +460,7 @@ int main()
                     && event.mouseButton.y >= 0
                     && event.mouseButton.y < cellSize)
                 {
-                    girl_generator();
+                    girlGenerator();
                 }
             }
         }
