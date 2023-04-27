@@ -17,7 +17,6 @@ int m;
 int n;
 int m1 = 0;
 int n1 = 0;
-bool dragged = 0;
 
 Texture girl1;
 Texture textureclear;
@@ -30,6 +29,14 @@ Music music;
 
 int Grid[size + 2][size + 2];
 int CheckGrid[size * size];
+
+template <typename T>
+void swap (T& first, T& second)
+{
+    T temp = first;
+    first = second;
+    second = temp;
+}
 
 void drawGrid(RenderWindow& window, int grid[size + 2][size + 2]) 
 {
@@ -149,32 +156,32 @@ void music_changer()
     {
         case 0:
         {
-            music.openFromFile("../musics/navalivaet_jesco.ogg");
+            music.openFromFile("./musics/navalivaet_jesco.ogg");
             break;
         }
         case 1:
         {
-            music.openFromFile("../musics/navalivaet_jesco1.ogg");
+            music.openFromFile("./musics/navalivaet_jesco1.ogg");
             break;
         }
         case 2:
         {
-            music.openFromFile("../musics/navalivaet_jesco2.ogg");
+            music.openFromFile("./musics/navalivaet_jesco2.ogg");
             break;
         }
         case 3:
         {
-            music.openFromFile("../musics/navalivaet_jesco3.ogg");
+            music.openFromFile("./musics/navalivaet_jesco3.ogg");
             break;
         }
         case 4:
         {
-            music.openFromFile("../musics/navalivaet_jesco4.ogg");
+            music.openFromFile("./musics/navalivaet_jesco4.ogg");
             break;
         }
         default:
         {
-            music.openFromFile("../musics/navalivaet_jesco.ogg");
+            music.openFromFile("./musics/navalivaet_jesco.ogg");
             break;
         }
     }
@@ -192,43 +199,43 @@ void girl_generator()
     {
         case 0:
         {
-            girl1.loadFromFile("../images/girl.jpg");
+            girl1.loadFromFile("./images/girl.jpg");
             break;
         }
         case 1:
         {
-            girl1.loadFromFile("../images/girl1.jpg");
+            girl1.loadFromFile("./images/girl1.jpg");
             break;
         }
         case 2:
         {
-            girl1.loadFromFile("../images/girl2.jpg");
+            girl1.loadFromFile("./images/girl2.jpg");
             break;
         }
         case 3:
         {
-            girl1.loadFromFile("../images/girl3.jpg");
+            girl1.loadFromFile("./images/girl3.jpg");
             break;
         }
         case 4:
         {
-            girl1.loadFromFile("../images/girl4.jpg");
+            girl1.loadFromFile("./images/girl4.jpg");
             break;
         }
         case 5:
         {
-            girl1.loadFromFile("../images/girl5.jpg");
+            girl1.loadFromFile("./images/girl5.jpg");
             break;
         }
         case 6:
         {
-            girl1.loadFromFile("../images/girl6.jpg");
+            girl1.loadFromFile("./images/girl6.jpg");
             break;
         }
 
         default:
         {
-            girl1.loadFromFile("../images/girl.jpg");
+            girl1.loadFromFile("./images/girl.jpg");
             break;
         }
     }
@@ -349,17 +356,17 @@ void init()
     girl_generator();
 
     //Texture textureclear;
-    textureclear.loadFromFile("../images/textureclear.jpg");
+    textureclear.loadFromFile("./images/textureclear.jpg");
     textureclear.setSmooth(true);
 
     //Texture textureboarder;
-    textureboarder.loadFromFile("../images/textureboarder.jpg");
+    textureboarder.loadFromFile("./images/textureboarder.jpg");
     textureboarder.setSmooth(true);
 
-    texturerecreate.loadFromFile("../images/recreate.jpg");
+    texturerecreate.loadFromFile("./images/recreate.jpg");
     texturerecreate.setSmooth(true);
 
-    texturemusic.loadFromFile("../images/musicico.jpg");
+    texturemusic.loadFromFile("./images/musicico.jpg");
     texturerecreate.setSmooth(true);
 
     music_changer();
@@ -412,45 +419,28 @@ int main()
                     && event.mouseButton.y >= cellSize 
                     && event.mouseButton.y < (size + 1) * cellSize) 
                 {
-                    if (dragged == 0) 
+                    m = event.mouseButton.x / cellSize;
+                    n = event.mouseButton.y / cellSize;
+                    if (Grid[m][n] != -1 
+                        && Grid[m][n] != 0 
+                        && (Grid[m + 1][n] == 0 
+                            || Grid[m - 1][n] == 0 
+                            || Grid[m][n + 1] == 0 
+                            || Grid[m][n - 1] == 0)) 
                     {
-                        m = event.mouseButton.x / cellSize;
-                        n = event.mouseButton.y / cellSize;
-                        if (Grid[m][n] != -1 
-                            && Grid[m][n] != 0 
-                            && (Grid[m + 1][n] == 0 
-                                || Grid[m - 1][n] == 0 
-                                || Grid[m][n + 1] == 0 
-                                || Grid[m][n - 1] == 0)) 
+                        for (int i = 1; i < size + 1; i++)
                         {
-                            dragged = 1;
-                            m1 = m;
-                            n1 = n;
+                            for (int j = 1; j < size + 1; j++)
+                            {
+                                if (Grid[i][j] == 0)
+                                {
+                                    m1 = i;
+                                    n1 = j;
+                                }
+                            }
                         }
-                    }
-                    if (dragged == 1) 
-                    {
-                        m = event.mouseButton.x / cellSize;
-                        n = event.mouseButton.y / cellSize;
-                        if (Grid[m][n] == 0 
-                            && ((m == m1 - 1 
-                                && n != n1 - 1 
-                                && n != n1 + 1) 
-                                || (m == m1 + 1 
-                                    && n != n1 - 1 
-                                    && n != n1 + 1) 
-                                || (n == n1 - 1 
-                                    && m != m1 - 1 
-                                    && m != m1 + 1) 
-                                || (n == n1 + 1 
-                                    && m != m1 - 1 
-                                    && m != m1 + 1))) 
-                        {
-                            int temp = Grid[m][n];
-                            Grid[m][n] = Grid[m1][n1];
-                            Grid[m1][n1] = temp;
-                            dragged = 0;
-                        }
+
+                        swap<int>(Grid[m][n], Grid[m1][n1]);
                     }
                 }
 
@@ -458,7 +448,7 @@ int main()
                     && event.mouseButton.x >= (size + 1) * cellSize
                     && event.mouseButton.x < (size + 2) * cellSize
                     && event.mouseButton.y >= 0 * cellSize
-                    && event.mouseButton.y < (size) * cellSize)
+                    && event.mouseButton.y < cellSize)
                 {
                     music.stop();
                     music_changer();
@@ -468,7 +458,7 @@ int main()
                     && event.mouseButton.x >= (size)*cellSize
                     && event.mouseButton.x < (size + 1) * cellSize
                     && event.mouseButton.y >= 0
-                    && event.mouseButton.y < (size) * cellSize)
+                    && event.mouseButton.y < cellSize)
                 {
                     girl_generator();
                 }
