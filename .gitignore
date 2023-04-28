@@ -3,6 +3,14 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+###########################
+#
+#	installer repos
+#
+###########################
+
+installer repos/
+
 # User-specific files
 *.rsuser
 *.suo
