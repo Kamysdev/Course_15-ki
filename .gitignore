@@ -9,7 +9,7 @@
 #
 ###########################
 
-installer repos/
+installer_repos/
 
 # User-specific files
 *.rsuser
